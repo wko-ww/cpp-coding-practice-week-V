@@ -1,3 +1,75 @@
+//作业3.2
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	char a, b, c, d, e;
+	cin.get(a); // cin.get()可以提取分隔符
+	cin.get(b);
+	cin.get(c);
+	cin.get(d);
+	cin.get(e);
+	int f = 0;
+	if (a == ' ') f = f + 1; //两个量相同用 ==
+	if (b == ' ') f = f + 1;
+	if (c == ' ') f = f + 1;
+	if (d == ' ') f = f + 1;
+	if (e == ' ') f = f + 1;
+	cout << f;
+
+}
+
+//作业3.3
+#include"pch.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main(void)
+{
+	cout << "输入的三角形的三条边长：\n";
+	double a, b, c;
+	cin >> a >> b >> c;
+	double p;
+	p = (a + b + c) / 2;
+	double s;
+	s = sqrt(p * (p - a) * (p - b) * (p - c));
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+	cout << s;
+	return 0;
+
+
+}
+
+//作业3.3拓展
+#include"pch.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main(void)
+{
+	cout << "输入的三角形的三条边长：\n";
+	double a, b, c;
+	cin >> a >> b >> c;
+	if (a + b > c && a + c > b && b + c > a)
+	{
+		double p;
+		p = (a + b + c) / 2;
+		double s;
+		s = sqrt(p * (p - a) * (p - b) * (p - c));
+		cout << setiosflags(ios::fixed);
+		cout.precision(2);
+		cout << s << '\n';
+	}
+	
+	else
+		cout << "输入的三边长不能构成三角形";
+
+	return 0;
+}
+
+
 //2.4-基本运算符和表达式
 #include"pch.h"
 #include <iostream>
