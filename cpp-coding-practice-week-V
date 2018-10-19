@@ -600,3 +600,123 @@ int main()
 	char c2 = 'a', c3 = 'b';
 	cout << "c2=" << c2 << '\t' << "c3=" << c3 << '\n';
 }
+
+//实验2-1
+#include"pch.h"
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	cout << 'I' << '\n';
+	cout << ' ' << '\n';
+	cout << 'L' << '\n';
+	cout << 'o' << '\n';
+	cout << 'v' << '\n';
+	cout << 'e' << '\n';
+	cout << ' ' << '\n';
+	cout << 'G' << '\n';
+	cout << 'P' << '\n';
+	cout << 'L' << '\n';
+	cout << 'T' << '\n';
+	return 0;
+
+
+}
+
+//实验2-2
+#include"pch.h"
+#include<iostream>
+using namespace std;
+int main(void)
+{
+	cout << "------------------------------------\n";
+	cout << "Province      Area(km2)   Pop.(10K)\n";
+	cout << "------------------------------------\n";
+	cout << "Anhui         139600.00   6461.00\n";
+	cout << "Beijing        16410.54   1180.70\n";
+	cout << "Chongqing      82400.00   3144.23\n";
+	cout << "Shanghai        6340.50   1360.26\n";
+	cout << "Zhejiang      101800.00   4894.00\n";
+	cout << "------------------------------------\n";
+	return 0;
+}
+
+//实验2-3
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	int i = 0, j = 0;
+	i = 3, (j++) + i;
+	cout << i << ' ' << j << '\n';
+
+	i = 0, j = 0; //此处不能再写 int i=0， j=0
+	j = i = (i = 3) * 2;
+	cout << i << ' ' << j << '\n';
+
+	i = 0, j = 0;
+	(j == 1) ? (i = 1) : (i = 3);
+	cout << i << ' ' << j << '\n';
+
+	i = 0, j = 0;
+	i += j += 2;
+	cout << i << ' ' << j << '\n';
+
+	return 0;
+}
+
+//实验2-4
+#include"pch.h"
+#include <iostream>
+#include <iomanip>
+using namespace std;
+int main(void)
+{
+	char ch = 'b'; int i = 3, j = 5; float x = 22.354, Y = 435.6789; 
+	cout << '\n';
+	cout << "ch='" << ch << "'," << "ASCII=" << int(ch) << '\n';
+	cout << "i=" << i << '\t' << " j=" << j << '\n';
+	cout << setiosflags(ios::fixed);
+	cout.precision(2);
+	cout << "x=" << x << '\t' << "  Y=" << Y << '\n';
+}
+
+
+//实验2-5
+#include "pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	char a, b, c, d, e;
+	cin >> a >> b >> c >> d >> e;
+	if (a == 'C' && b == 'h' && c == 'i' && d == 'n' && e == 'a')
+	{
+		a = 'G';
+		b = 'l';
+		c = 'm';
+		d = 'r';
+		e = 'e';
+	} 
+	cout << a << b << c << d << e;
+
+}
+
+//实验2-5-2
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	char a, b, c, d, e;
+	cin >> a >> b >> c >> d >> e;
+	a = a + 4;
+	b = b + 4;
+	c = c + 4;
+	d = d + 4;
+	e = e + 4;
+	cout << a << b << c << d << e;
+	return 0;
+}
