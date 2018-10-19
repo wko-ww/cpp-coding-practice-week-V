@@ -1,0 +1,530 @@
+//2.4-基本运算符和表达式
+#include"pch.h"
+#include <iostream>
+using namespace std;
+
+int main(void)
+{
+	//算术运算符和算术表达式
+	double a1, a2, a3, a4, a5, a6, a7, a8; //此处不能用int？见a2处注释
+		// + 4th →
+	a1 = 1 + 2;
+		// - 4th →
+	a2 = 1 - 2.33; //若定义a2为int： “ = ”: 从“double”转换到“int”，可能丢失数据	 下同
+		// * 3th →
+	a3 = 6.66 * 2.33;
+		// / 3th →
+	a4 = 5 / 2; //两个运算量均为整型，取整数部分
+	typeid(a4).name();
+	a5 = 5.0 / 2.0; //至少有一个为实型，一般意义除法，下同
+	a6 = 5 / 2.0;
+		// % 3th →
+	a7 = 8 % 3; // %要求两个运算量皆为整型
+	// a8 = 8.0 % 3; invalid. operands here must be int.
+
+	cout << a1 << '\n';
+	cout << a2 << '\n';
+	cout << a3 << '\n';
+	cout << a4 << '\n';
+	cout << a5 << '\n';
+	cout << a6 << '\n';
+	cout << a7 << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	//括号改变运算次序
+		// () 1st →
+	float b1, b2;
+	b1 = 2 + 10 % 3; //整型赋值给实型？
+	b2 = (2 + 10) % 3;
+	cout << b1 << '\n';
+	cout << b2 << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	//关系（比较）运算符和关系表达式
+		// < 6th →
+	cout << (2 < 3) << '\n'; // () in cout is necessary
+		// <= 6th →
+	cout << (2 <= 3) << '\n'; //直接输出关系表达式的真假，上同
+		// > 6th →
+	int c1 = 2, c2 = 3; // 用 ， 连接变量初始化的表达式
+	float c3 = 2 > 3; //可将关系表达式结果赋值给任一类型的变量？ 下同. () not necessary with =
+	cout << c3 << '\n';
+		// >= 6th →
+	float c4 = 66.3f, c5 = 66.3f;
+	int c6 = c4 >= c5;
+	cout << c6 << '\n';
+	float c7 = c4 >= c5; //关系表达式的运算量和获得表达式的结果的变量类型必须相同？
+	cout << c7 << '\n';
+
+		// == 7th →
+	cout << (1 == 3 - 2) << '\n'; //相当于数学的等号=
+		// != 7th →
+	cout << (1 != 2) << '\n';
+	cout << "------------------------------------------------------'\n";
+
+		//各种形式
+	float c20 = 1, c21 = 2, c22 = 3; cout << (c20 + c21 > c21 + c22) << '\n';
+	//cout << ((int c23 = 3) > (float c24 = 5)) << '\n'; // 两个不同类型数据比较？ ()? 无法运行？
+	cout << ('a' < 'b') << '\n'; //什么意思???
+	cout << "------------------------------------------------------'\n";
+
+
+		// 参加关系运算的两个操作数可以是任意类型的量
+	int c8 = 1, c9 = 2;
+	float c10 = 1.3f, c11 = 2.3f; //“初始化” : 从“double”到“float”截断
+	/*
+	网上解释
+
+	在当前的计算机中，double类型存储占8字节，float类型存储占4字节，当两个不同类型的数据进行赋值时，系统进行隐式类型转换，高精度向低精度的赋值时，低精度变量无法完整存储高精度数据，系统会自动“截断”部分内容，完成数据转存，这样就有可能会造成数据精度丢失。
+	在C/C++语言中，浮点型常数的默认类型是double类型，如0.5 ，123.45等
+	若想得到float类型常数，则要在常数后加f 字符，如：0.5f , 123.45f等
+	当把double类型数据赋值给float类型变量时，系统编译时会报以下警告：
+	warning C4244: '=' : conversion from 'double' to 'float', possible loss of data （从double转成float，可能会造成数据丢失）
+	因此，数据间赋值一定要采用正确的类型，建议在使用浮点数时，只使用double类型。
+	*/
+	double c12 = 6.00, c13 = 3.77;
+	char c14 = 'e', c15 = 'f';
+	bool c16 = true, c17 = false, c18 = 0, c19 = 1; //bool常量的真假可用1 0 替换？ 可以
+	cout << (c8 < c9) << '\n';
+	cout << (c10 <= c11) << '\n';
+	cout << (c12 >= c13) << '\n';
+	cout << (c14 <= c15) << '\n';
+	cout << (c16 < c17) << '\n' << (c18 >= c19) << '\n';
+	cout << "------------------------------------------------------'\n";
+
+		//运算符的结合性
+	cout << (3 > 2 > 1) << '\n'; //先算 3 > 2, 为真，为1；再算 1 > 1,为假，为0 //严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ > ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	95
+
+	cout << "------------------------------------------------------'\n";
+
+	//逻辑运算符和逻辑表达式
+		// ! 2th ←
+	cout << !1 << '\n' << !2 << '\n' << !true << '\n' << (!2 >= 0) << '\n'; // (!2 > 0) 括号，有个>。 逻辑运算，非零为真，true=1=非零，false=0。 严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ >= ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	100
+		// && 11th →
+	cout << (1 && 1) << '\n' << (1 && 0) << '\n' << (2 && 0) << '\n' << (true && false) << '\n' << (3 > 2 && 1 < 9) << '\n'; // 逻辑运算用（）,下同 严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ << ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	102
+		// || 12th →
+	cout << (1 || 1) << '\n' << (1 || 0) << '\n' << (2 || 0) << '\n' << (true || false) << '\n' << (3 > 2 || 1 < 9) << '\n';  //严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ << ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	104
+	cout << "------------------------------------------------------'\n";
+
+		//参加逻辑运算的运算量可以是任意类型的数据 //啥意思?
+	int d1 = -1, d2 = 2;
+	cout << (d1 && d2) << '\n'; //逻辑运算时非零为真，0为假；逻辑表达式、关系表达式结果：1为真， 0 为假
+	float d3 = 3.0f, d4 = 6.3f, d5 = 2.2f;
+	cout << (d3 > d4 || d3 == d5) << '\n'; // 
+	double d6 = 3.0, d7 = 6.3, d8 = 2.2;
+	cout << (!d6 > d7 && d8) << '\n'; // 严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ > ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	112
+	char d9 = 'a', d10 = 'b';
+	cout << (!d9 == d10) << '\n'; //
+	bool d11 = 0, d12 = 1, d13 = true, d14 = false;
+	cout << (!d11 || d12 > d13 < d14) << '\n'; //  严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ < ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	116
+	cout << "------------------------------------------------------'\n";
+
+	//c++ 代码形式与数学表达式的差异
+	// 0≤x≤10
+	int x1 = -1;
+	cout << (0 <= x1 && x1 <= 10) << '\n'; // 
+	cout << (0 <= x1 <= 10) << '\n'; //  严重性	代码	说明	项目	文件	行	禁止显示状态 警告	C4804	“ <= ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	122
+	int x2 = 6;
+	cout << (0 <= x2 && x2 <= 10) << '\n';
+	cout << (0 <= x2 <= 10) << '\n'; //严重性	代码	说明	项目	文件	行	禁止显示状态警告	C4804	“ <= ”: 在操作中使用类型“bool”不安全	基本运算符和表达式 - exercise - i	c : \users\neko\desktop\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i\基本运算符和表达式 - exercise - i.cpp	125
+	cout << "------------------------------------------------------'\n";
+
+	//位运算符和位运算表达式 //位运算对整形量 符号位参与运算
+		// & 8th →
+	char e8 = 3, e9 = -2, e10; //此时将abc看成一字节长度的整形量
+	e10 = e8 & e9;
+		// ^ 9th →
+	char e11 = 18, e12 = 3, e13;
+	e13 = e11 ^ e12;
+		// | 10th →
+	char e14 = 18, e15 = 3, e16;
+	e16 = e14 | e15;
+		// ~ 2th ←
+	char e17 = 18, e18;
+	e18 = ~e17;
+		// << 5th → 
+		/*
+		一般格式为a << n，其意义是将a按二进制位向左移动n位，移出的高n位舍弃，最低位补n个0
+		对一个量进行左移一个二进制位，相当于乘以2操作。左移n个二进制位，相当于乘以2^n操作。
+		程序运行时，左移n位比乘以2^n操作速度快
+
+		左移运算有溢出问题，当左移一位，若符号位不变，则相当于*2， 但当符号位变化，就发生溢出。
+		溢出是储存位限制引起的
+		*/
+	int e1 = 15, x3; // 初始化变量a， 定义变量x为整形
+	x3 = e1 << 3;
+	char e2 = 127, x4; // 溢出例子
+	x4 = e2 << 2;
+		// >> 5th →
+		/*
+		一般格式为a >> n, 其意义是将a按二进制位向右移动n位，移出的最低n位舍弃，高位补1还是0取决于a的数据类型。
+		若a是有符号的整形量，高位补符号位。
+		若a是无符号的整形量，高位补0
+		对一个量进行右移一个二进制位，相当于除以2操作。右移n个二进制位，相当于除以2^n操作。
+		程序运行时，右移n位比除以2^n操作速度快
+
+		右移运算有溢出问题，当右移一位，若符号位不变，则相当于/2， 但当符号位变化，就发生溢出。
+		溢出是储存位限制引起的
+		*/
+	char e3 = -4, e4 = 4, x5, x6; //char is signed char here
+	x5 = e3 >> 2;
+	x6 = e4 >> 2;
+	unsigned char e7 = -4, x7;
+	x7 = e7 >> 2;
+	cout << e10 << '\n' << e13 << '\n' << e16 << '\n' << e18 << '\n' << x3 << '\n' << x4 << '\n' << x5 << '\n' << x6 << '\n' << x7 << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	// 自增、自减运算符和表达式 
+	// 改变 变量 自身值 ,使变量自身的值+1/-1
+		// ++i, --i 2nd ←
+	int f1 = 3, g1; g1 = ++f1; //g1 = ++f1 之后f1的值由3→4 下同理
+	cout << f1 << '\n' << g1 << '\n';
+		// i++, i-- 2nd ←
+	int f2 = 3, g2; g2 = f2++;
+	cout << f2 << '\n' << g2 << '\n';
+
+	int f3 = 2, f4 = 2;
+	f3 = ++f3;
+	cout << f3 << '\n';
+	f4 = f4++;
+	cout << f4 << '\n';
+
+	int f5 = 2;
+	cout << f5++ << '\n' << ++f5 << '\n'; // f5++后f5=3, ++f5后f5=4
+	int f6 = 2;
+	cout << ++f6 << '\n';
+
+	int f7 = 3, f8 = 4, f9;
+	f9 = (f7++) + (f8++); //不加括号可以？
+	cout << f7 << '\n' << f8 << '\n' << f9 << '\n';
+
+	int z1 = 1, z2 = 2, z3; //？？？
+	cout << (z3 = z1 + z2) << '\n' << (z3 = z3 + z1) << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	// sizeof 2nd ←
+	cout << sizeof(666) << '\n';
+	cout << sizeof(66.6) << '\n';
+	char g1 = 'w';
+	bool g2;
+	cout << sizeof(g1) << '\n';
+	cout << sizeof('w') << '\n';
+	cout << sizeof(g2) << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	//逗号运算符和逗号表达式 , 15th →
+	//整个逗号表达式的值为最后一个表达式的值
+	int h1, h2, h3;
+	h1 = 3 * 5, h1 * 4, h1 + 5;
+	cout << h1 << '\n';
+	h2 = h1 = 3 * 5, h1 * 4, h1 + 5;
+	cout << h2 << '\n';
+	h3 = (h1 = 3 * 5, h1 * 4, h1 + 5);
+	cout << h3 << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	//赋值运算符和赋值表达式
+	//赋值运算符 = 14th ←
+	/*
+	<变量><赋值运算符><表达式> 整个赋值表达式的值是变量获取的值
+	赋值表达式中<表达式>还可以是另一个赋值表达式,如a = b = 5
+	（a = 5 + (c = 6)) = 11
+	(a = (b = 4) + (c = 6)) = 10
+	*/
+
+	int i1 = 3, i2, i3, i4;
+	i2 = i3 = i4 = i1 + 5; //i1 + 5 = 8 →i4 = 8，（i4 = i1 + 5） = 8 → …… →i3 = 8， i2 = 8 → …… → （i2 = i3 = i4 = i1 + 5） = 8
+	cout << i2 << '\n' << (i2 = i3 = i4 = i1 + 5) << '\n';
+
+	//复合赋值运算符 += -= *= /= %= <<= >>= &= ^= |= 14th ←
+	int j1 = 1;
+	j1 += 3;
+	cout << j1 << '\n';
+	int j2 = 2;
+	j2 += j2 -= j2 * j2;
+	cout << j2 << '\n';
+	cout << "------------------------------------------------------'\n";
+
+	//逻辑运算优化的副作用
+	//C++语言在计算逻辑表达式的值时，从左到右扫描表达式，表达式的值一旦确定后，就不再继续进行计算。
+	int kx, ky, kz, kw;
+	kx = ky = kz = 1;
+	kw = ++kx || ++ky && ++kz; // ++ 优先级比其他运算符高，先算++kx, ++ky, ++kz的值？ 为什么ky, kz输出的值为初始值？→从左向右扫描表达式？
+	cout << kx << '\n' << ky << '\n' << kz << '\n' << kw << '\n';
+
+	int lx = -1, ly = 2, lz = 0, lw;
+	lw = ++lx && ++ly || ++lz;
+	cout << lx << '\n' << ly << '\n' << lz << '\n' << lw << '\n';
+	// 表达式的值一旦确定中的表达式→整个表达式or以一个逻辑运算符为中心的表达式？
+	cout << "------------------------------------------------------'\n";
+return 0;
+}
+
+//2.5类型转换
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(int)
+{
+	//赋值时的自动类型转换
+		//实型量赋给整型变量：舍弃小数部分
+	int a = 3.96;
+	int b = 2.33;
+	cout << a << '\n';
+	cout << b << '\n';
+	cout << "----------------------------------------------" << '\n';
+
+		//整型量赋给实型变量：数值不变，有效数字位数增加
+	float f = 23; //cout输出仍为23，下同
+	double d = 23;
+	cout << f << '\n';
+	cout << d << '\n';
+	cout << "----------------------------------------------" << '\n';
+
+		//整型量之间相互赋值：内存数据之间的赋值
+			//长赋给短：低位截断
+	char c = 250;
+	cout << c << '\n'; //符号位改变，cout无法输出？
+	short int m = 65536;
+	cout << m << '\n'; //赋值溢出，cout输出为0
+	cout << "----------------------------------------------" << '\n';
+
+			//短赋给长
+				//1)短无符号赋给长：短补0达长位数
+	//int g = unsigned char e = -4;  invalid
+	unsigned char e = -4;
+	int g = e;
+	cout << g << '\n';
+	cout << "----------------------------------------------" << '\n';
+
+				//2）短有符号赋给长→符号位拓展
+	char h = -4;
+	int i = h;
+	cout << i << '\n';
+
+	char j = 4;
+	int k = j;
+	cout << k << '\n';
+	cout << "----------------------------------------------" << '\n';
+
+	//各种类型运算量混合运算时的自动类型转换
+	//c++各种类型常量、变量可混合运算，不同类型量运算时，计算机首先将它们转换成相同数据类型的量再运算。
+	/*
+	转换规则:
+	double←float
+	↑
+	long
+	↑
+	unsigned
+	↑
+	int←char，short
+	*/
+
+	//强制类型转换
+	int i1 = 1, i2 = 1, i3 = 1, a1 = 1, a2 = 1;
+	float x1 = 1, y1 = 1;
+	double z1 = 1, z2 = 1;
+	i1 = int(x1 + y1);
+	cout << i1 << '\n';
+	i2 = (int)x1 + y1;
+	cout << i2 << '\n';
+	i3 = (int)(x1 + y1);
+	cout << i3 << '\n';
+	z1 = double(a1);
+	cout << z1 << '\n';
+	z2 = (double)a1;
+	a1 = int(z1) % i1;
+	cout << a1 << '\n';
+	a2 = (int)z1 % i1;
+	cout << a2 << '\n';
+	cout << typeid(i1).name() << '\n';
+	cout << typeid(y1).name() << '\n';
+	cout << typeid(i2).name() << '\n';
+	cout << typeid(i3).name() << '\n';
+	cout << typeid(z1).name() << '\n';
+	cout << typeid(z2).name() << '\n';
+	cout << typeid(a1).name() << '\n';
+	cout << typeid(a2).name() << '\n';
+
+
+	return 0;
+}
+
+//3.2-cin输入流
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main()
+{
+	int a1, b1;
+	float c1, d1;
+	char e1, f1;
+	// a seperator in c++ can be space, a tab and an enter. there can be more than one seperator between two values
+	cin >> a1 >> b1;
+	cin >> c1 >> d1; // if inputs here are integers, they are float. the type of data depends on its definition.
+	cin >> e1 >> f1;
+	cout << a1 << ' ' << f1 << endl;
+
+	// try: input(s) are less/more than the variables in the cin statement.
+	int g1;
+	cin >> g1;
+	cout << g1;
+	
+	//try: <Enter> at the beginning
+
+	// wrong types
+	int h1, i1;
+	cin >> h1 >> i1; // assign char to them
+	cout << h1 << ' ' << i1 << '\n'; 
+	/* the type of the inputs are wrong.
+	h1 can't get a valid value.
+	since the former process gets wrong, the cin statement stops 
+	and the value after h1,that is, i1, can't continue to get a value and its value will be a random number if it's output. 
+	*/
+	int j1;
+	float k1;
+	cin >> k1 >> j1; // input 300 1.234 seperately
+	cout << j1 << ' ' << k1;
+	// overflow
+
+	// input hex, oct, dec
+	int a2, b2, c2, d2;
+	cin >> hex >> a2;
+	cin >> oct >> b2;
+	cin >> c2;
+	cin >> dec >> d2;
+	cout << a2 << ',' << b2 << ',' << c2 << ',' << d2 << endl;
+
+	//input char
+	/*char c11, c12, c13, c14;
+	cin >> c11 >> c12 >> c13;
+	//  A b C/ AbC:the same result */
+
+	int a3, b3; //A
+	char c3, d3;
+	cin >> a3 >> b3;
+	cin >> c3 >> d3;
+	cout << a3 << ' ' << b3 << ' ' << c3 << ' ' << d3 << endl;
+	//input:12 34 5678
+
+	// cin.ignore() function
+	// <space> is also a character
+	cin >> a3 >> b3; // C
+	cin.ignore(3); // abcde fg, cin.ignore(5) and cin.ignore(6) will be the same, as there's a space after the e, which is a seperator
+	cin >> c3 >> d3;
+	cout << a3 << ' ' << b3 << ' ' << c3 << ' ' << d3 << endl; //B
+	/*write like what is above(from A to B) and input 12 34 5678 each time, the  result will be: 
+	12 34 5678
+	12 34 5 6
+	12 34 5678
+	78 12 5 6
+
+	reason:
+	there remain two integers in the first input(78) hasn't been used.
+	when it comes to C
+	the 78 left is assigned to a3(int, thus 78 together) and the 12 to b3(there is an <Enter> after inputing data the first time, which is also a seperator)
+	and cin.ignore(3) to ignore the next 3 characters(space 3 4)(and the space after the 4 is also ignored, which is considered a seperator.and thus cin.ignore(4) gives the same result
+	thus 5 for c3 and 6 for c4.
+	*/
+
+	//an better example to show the cin.ignore() function
+	int a4, b4; //A
+	char c4, d4;
+	cin >> a4 >> b4;
+	cin.ignore(3);
+	cin >> c4 >> d4;
+	cout << a4 << ' ' << b4 << ' ' << c4 << ' ' << d4 << endl;
+
+	//cin.get()
+	char a5, b5, c5, d5; // X
+	cin.get(a5);
+	cin.get(b5);
+	cin.get(c5);
+	cin.get(d5);
+	cout << a5 << '\n' << b5 << '\n' << c5 << '\n' << d5; // Y
+	cout << '-';
+	// input:A B<Enter>
+	/*
+	the result from X to Y will be:
+	A
+
+	B
+	  // <Enter> output, it is the same as '\n'
+	*/
+
+	char a6, b6, c6, d6;
+	cin.get(a6);
+	cin.get(b6);
+	cin.get(c6);
+	cin >> d6;
+	cout << a6 << '\n' << b6 << '\n' << c6 << '\n' << d6;
+}
+
+//3.2-cout输出流
+#include"pch.h"
+#include <iomanip>
+
+#include <iostream>
+using namespace std;
+//↑two lines above make cin and cout availible
+
+int main()
+{
+	char a11;
+	cout << "please input a character:";
+	cin >> a11;
+	cout << "the character is: " << a11 << endl; //endl:line-changing,the same as '\n'
+
+	//q&a type program
+	int i;
+	cout << "please input the value of variable i:";
+	cin >> i;
+	cout << "the value you input is: " << i << endl;
+
+	//multi-variable input
+	int a = 10, b = 20, c = 30, d = 40;
+	double m = 5.23, n = 100;
+	cout << a << b << endl;
+	cout << c << n - d << endl;
+	cout << m << n << endl;
+		//breaks can be space, punctuation and line breaks and so on
+	cout << a << ',' << b << endl;
+	cout << c << ' ' << n - d << endl;
+	cout << m << ',' << n << endl;
+
+	cout << "a=" << a << '\t' << "b=" << b << endl;
+	cout << "c=" << c << '\t' << n << "-" << d << "=" << n - d << endl;
+	cout << "m=" << m << '\t' << "n=" << n << endl;
+
+	double nx = 100.0; double ny = 100; //both of their output is 100
+	cout << nx << ' ' << ny << endl; // the format of the output of a value in the cout statement depends on its numerical value but not its type
+	
+	// setw(): a function for seperating outputs(set width),int value in ():indicates the width of the data output.
+	//when the width given is larger than the data input: right aligned and filled space to the left until the width reaches what is given(defalt)
+	// #include <iomanip>
+	// the value in () must be an int or the expression whose result is an int
+	cout << setw(10) << a << setw(10) << b << endl;
+	cout << setw(10) << c << setw(10) << n - d << endl;
+	cout << setw(10) << m << setw(10) << n << endl;
+
+	cout << setw(10) << a << b << endl;
+
+	cout << setw(10) << 100000000000 << setw(10) << 100000000000 << setw(10) << 10 << endl;
+
+	//cout oct hex
+	int a1 = 10, b1 = 20, c1 = 30, d1 = 40;
+	double m1 = 5.23, n1 = 100;
+	cout << "a1=" << oct << a1 << '\t' << "b1=" << b1 << endl;
+	cout.setf(ios::scientific, ios::floatfield); //默认保留小数点后六位！！！
+	cout << "c1=" << hex << c1 << '\t' << "n1-d1=" << n1 - d1 << endl; 
+	/* the cout.setf() function above dosen't make any change on c1, as c1 belongs to int
+	and the statement above makes the result of n1 - d1 change to scientific notation as the result of n1 - d1 belongs to float
+	*/
+	cout << "m=" << m1 << endl;
+	cout.unsetf(ios::scientific);
+	cout << "m1=" << m1 << '\t' << "n1=" << n1 << endl;
+
+	// char output
+	char c2 = 'a', c3 = 'b';
+	cout << "c2=" << c2 << '\t' << "c3=" << c3 << '\n';
+}
