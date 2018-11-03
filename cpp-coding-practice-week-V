@@ -1,3 +1,17 @@
+//作业3.1
+#include"pch.h"
+#include <iostream>
+using namespace std;
+int main(void)
+{
+	int x, y;
+	char a, b;
+	cin >> x >> a >> y >> b;
+	cout << x << ' ' << a << ' ' << y << ' ' << b;
+	return 0;
+
+}
+
 //作业3.2
 #include"pch.h"
 #include <iostream>
@@ -422,7 +436,7 @@ int main(int)
 	return 0;
 }
 
-//3.2-cin输入流
+//3.1-cin输入流
 #include"pch.h"
 #include <iostream>
 using namespace std;
